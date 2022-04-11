@@ -18,6 +18,8 @@ public class ZALCOMerchandisingSystem extends javax.swing.JFrame{
     static Inventory inventory = new Inventory();
     static Supermarket supermarket = new Supermarket();
     static File invFile = new File("Inventory File.txt");
+    static File managerCred = new File("Manager Credentials.txt");
+    static File employeeCred = new File("Employee Credentials.txt");
     
     public static void main(String[] args){
         java.awt.EventQueue.invokeLater(new Runnable(){
@@ -28,7 +30,7 @@ public class ZALCOMerchandisingSystem extends javax.swing.JFrame{
                 } catch (ParseException ex) {
                     Logger.getLogger(ZALCOMerchandisingSystem.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                new MainMenu().setVisible(true);
+                new StartScreen().setVisible(true);
             }
         });
     }

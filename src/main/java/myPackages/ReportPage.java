@@ -275,7 +275,7 @@ public class ReportPage extends javax.swing.JFrame {
     private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButtonActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        new MainMenu().setVisible(true);
+        new ManagerMenu().setVisible(true);
     }//GEN-LAST:event_BackButtonActionPerformed
 
     private void SaveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveButtonActionPerformed

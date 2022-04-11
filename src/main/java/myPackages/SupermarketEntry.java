@@ -196,7 +196,7 @@ public class SupermarketEntry extends javax.swing.JFrame {
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        new MainMenu().setVisible(true);
+        new ManagerMenu().setVisible(true);
     }//GEN-LAST:event_backButtonActionPerformed
 
     private void SupermarketNameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SupermarketNameFieldActionPerformed

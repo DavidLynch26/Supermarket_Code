@@ -12,12 +12,12 @@ import java.util.logging.Logger;
  *
  * @author lynch
  */
-public class MainMenu extends javax.swing.JFrame {
+public class ManagerMenu extends javax.swing.JFrame {
 
     /**
      * Creates new form MainMenu
      */
-    public MainMenu() {
+    public ManagerMenu() {
         initComponents();
     }
 
@@ -32,23 +32,16 @@ public class MainMenu extends javax.swing.JFrame {
         java.awt.GridBagConstraints gridBagConstraints;
 
         jPanel2 = new javax.swing.JPanel();
-        MainMenuLabel = new javax.swing.JLabel();
         InputSupermarketDataButton = new javax.swing.JButton();
         ExpiryButton = new javax.swing.JButton();
+        viewPlanogramsButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("ZALCO Distributers ");
         setResizable(false);
 
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Manager"));
         jPanel2.setLayout(new java.awt.GridBagLayout());
-
-        MainMenuLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        MainMenuLabel.setText("Main Menu");
-        MainMenuLabel.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        jPanel2.add(MainMenuLabel, gridBagConstraints);
 
         InputSupermarketDataButton.setText("Input Supermarket Data");
         InputSupermarketDataButton.addActionListener(new java.awt.event.ActionListener() {
@@ -67,8 +60,11 @@ public class MainMenu extends javax.swing.JFrame {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridy = 2;
         jPanel2.add(ExpiryButton, gridBagConstraints);
+
+        viewPlanogramsButton.setText("View Planograms");
+        jPanel2.add(viewPlanogramsButton, new java.awt.GridBagConstraints());
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -103,7 +99,7 @@ public class MainMenu extends javax.swing.JFrame {
         try {
             new SupermarketEntry().setVisible(true);
         } catch (ParseException ex) {
-            Logger.getLogger(MainMenu.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ManagerMenu.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_InputSupermarketDataButtonActionPerformed
 
@@ -124,20 +120,21 @@ public class MainMenu extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MainMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManagerMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MainMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManagerMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MainMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManagerMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MainMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManagerMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MainMenu().setVisible(true);
+                new ManagerMenu().setVisible(true);
             }
         });
     }
@@ -145,7 +142,7 @@ public class MainMenu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ExpiryButton;
     private javax.swing.JButton InputSupermarketDataButton;
-    private javax.swing.JLabel MainMenuLabel;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JButton viewPlanogramsButton;
     // End of variables declaration//GEN-END:variables
 }
