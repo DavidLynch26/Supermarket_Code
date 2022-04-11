@@ -4,6 +4,17 @@
  */
 package myPackages;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
 /**
  *
  * @author David
@@ -39,7 +50,7 @@ public class ViewSupermarket extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jFileChooser1 = new javax.swing.JFileChooser();
+        fileChooser = new javax.swing.JFileChooser();
         jPanel1 = new javax.swing.JPanel();
         supermarketNameLabel = new javax.swing.JLabel();
         supermarketTierLabel = new javax.swing.JLabel();
@@ -49,7 +60,8 @@ public class ViewSupermarket extends javax.swing.JFrame {
         Tier = new javax.swing.JLabel();
         backButton = new javax.swing.JButton();
 
-        jFileChooser1.setDialogTitle("Choose the planogram of the shelf");
+        fileChooser.setDialogTitle("Choose the planogram of the shelf");
+        fileChooser.setFileFilter(new FileNameExtensionFilter("Image Files", ImageIO.getReaderFileSuffixes()));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -103,8 +115,8 @@ public class ViewSupermarket extends javax.swing.JFrame {
                                     .addComponent(supermarketTierLabel))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(Tier, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(Name, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(Tier)
+                                    .addComponent(Name)))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(93, 93, 93)
                         .addComponent(backButton)))
@@ -163,8 +175,31 @@ public class ViewSupermarket extends javax.swing.JFrame {
     }//GEN-LAST:event_backButtonActionPerformed
 
     private void uploadPlanogramButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uploadPlanogramButtonActionPerformed
-        // TODO add your handling code here:
-        jFileChooser1.showOpenDialog(null);
+        // TODO add your handling code here: 
+        Integer res = fileChooser.showOpenDialog(null);
+          
+        File file = new File("location.txt");
+        String dest = file.toString();
+        System.out.println(dest);
+        
+        if(res == javax.swing.JFileChooser.APPROVE_OPTION){
+            SimpleDateFormat formatter = new SimpleDateFormat("dd_MM_yyyy");
+            Date date = new Date();           
+            var source = new File(fileChooser.getSelectedFile().getAbsolutePath());
+            
+            String ext = "";
+            int i = source.toString().lastIndexOf(".");
+            if(i > 0){
+                ext = source.toString().substring(i+1);
+            }
+            
+            var destination = new File(dest.replace("location.txt", "")+supermarketName+formatter.format(date)+"."+ext);
+            try {
+                Files.copy(source.toPath(), destination.toPath(), StandardCopyOption.REPLACE_EXISTING);
+            } catch (IOException ex) {
+                Logger.getLogger(ViewSupermarket.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }//GEN-LAST:event_uploadPlanogramButtonActionPerformed
 
     /**
@@ -209,7 +244,7 @@ public class ViewSupermarket extends javax.swing.JFrame {
     private javax.swing.JLabel Name;
     private javax.swing.JLabel Tier;
     private javax.swing.JButton backButton;
-    private javax.swing.JFileChooser jFileChooser1;
+    private javax.swing.JFileChooser fileChooser;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel supermarketNameLabel;
     private javax.swing.JLabel supermarketTierLabel;

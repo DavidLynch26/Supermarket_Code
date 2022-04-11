@@ -4,9 +4,12 @@
  */
 package myPackages;
 
+import java.io.File;
 import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -30,11 +33,14 @@ public class ManagerMenu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        fileChooser = new javax.swing.JFileChooser();
         jPanel2 = new javax.swing.JPanel();
         InputSupermarketDataButton = new javax.swing.JButton();
         ExpiryButton = new javax.swing.JButton();
         viewPlanogramsButton = new javax.swing.JButton();
         logOutButton = new javax.swing.JButton();
+
+        fileChooser.setFileFilter(new FileNameExtensionFilter("Image Files", ImageIO.getReaderFileSuffixes()));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Manager Menu");
@@ -60,6 +66,11 @@ public class ManagerMenu extends javax.swing.JFrame {
 
         viewPlanogramsButton.setText("View Planograms");
         viewPlanogramsButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        viewPlanogramsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewPlanogramsButtonActionPerformed(evt);
+            }
+        });
 
         logOutButton.setText("Log Out");
         logOutButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -79,15 +90,13 @@ public class ManagerMenu extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(InputSupermarketDataButton, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(viewPlanogramsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(logOutButton)
-                                .addGap(45, 45, 45))))
+                        .addComponent(viewPlanogramsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(ExpiryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 434, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(189, 189, 189)
+                .addComponent(logOutButton)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -98,9 +107,9 @@ public class ManagerMenu extends javax.swing.JFrame {
                     .addComponent(InputSupermarketDataButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(ExpiryButton)
-                .addGap(70, 70, 70)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
                 .addComponent(logOutButton)
-                .addContainerGap(53, Short.MAX_VALUE))
+                .addGap(52, 52, 52))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -146,6 +155,16 @@ public class ManagerMenu extends javax.swing.JFrame {
         new StartScreen().setVisible(true);
     }//GEN-LAST:event_logOutButtonActionPerformed
 
+    private void viewPlanogramsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewPlanogramsButtonActionPerformed
+        // TODO add your handling code here:
+        Integer res = fileChooser.showOpenDialog(null);
+        
+        if(res == javax.swing.JFileChooser.APPROVE_OPTION){
+            var source = new File(fileChooser.getSelectedFile().getAbsolutePath());
+            new ViewUploadedPlanogram(source.toString()).setVisible(true);
+        }
+    }//GEN-LAST:event_viewPlanogramsButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -185,6 +204,7 @@ public class ManagerMenu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ExpiryButton;
     private javax.swing.JButton InputSupermarketDataButton;
+    private javax.swing.JFileChooser fileChooser;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JButton logOutButton;
     private javax.swing.JButton viewPlanogramsButton;
