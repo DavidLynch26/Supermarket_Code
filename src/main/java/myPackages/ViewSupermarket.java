@@ -11,6 +11,7 @@ package myPackages;
 public class ViewSupermarket extends javax.swing.JFrame {
 
     static String supermarketName;
+    static Integer supermarketTier;
     
     /**
      * Creates new form supermarketUpload
@@ -19,6 +20,14 @@ public class ViewSupermarket extends javax.swing.JFrame {
     public ViewSupermarket(String supermarketName) {
         ViewSupermarket.supermarketName = supermarketName;
         initComponents();
+        loadSupermarket(supermarketName);
+    }
+    
+    private void loadSupermarket(String supermarketName){
+        Name.setText(supermarketName);
+        Integer supermarketIndex = ZALCOMerchandisingSystem.supermarkets.Name.indexOf(supermarketName);
+        ViewSupermarket.supermarketTier = ZALCOMerchandisingSystem.supermarkets.getTierNumber(supermarketIndex);
+        Tier.setText(ViewSupermarket.supermarketTier+"");
     }
 
     /**
@@ -30,21 +39,133 @@ public class ViewSupermarket extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jFileChooser1 = new javax.swing.JFileChooser();
+        jPanel1 = new javax.swing.JPanel();
+        supermarketNameLabel = new javax.swing.JLabel();
+        supermarketTierLabel = new javax.swing.JLabel();
+        viewPlanogramButton = new javax.swing.JButton();
+        uploadPlanogramButton = new javax.swing.JButton();
+        Name = new javax.swing.JLabel();
+        Tier = new javax.swing.JLabel();
+        backButton = new javax.swing.JButton();
+
+        jFileChooser1.setDialogTitle("Choose the planogram of the shelf");
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("View and Update Planogram"));
+
+        supermarketNameLabel.setText("Supermarket Name:");
+
+        supermarketTierLabel.setText("Supermarket Tier:");
+
+        viewPlanogramButton.setText("View Planogram");
+        viewPlanogramButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewPlanogramButtonActionPerformed(evt);
+            }
+        });
+
+        uploadPlanogramButton.setText("Upload Planogram");
+        uploadPlanogramButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                uploadPlanogramButtonActionPerformed(evt);
+            }
+        });
+
+        Name.setText("jLabel1");
+
+        Tier.setText("jLabel2");
+
+        backButton.setText("Back Button");
+        backButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(viewPlanogramButton)
+                                .addGap(34, 34, 34)
+                                .addComponent(uploadPlanogramButton))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(supermarketNameLabel)
+                                    .addComponent(supermarketTierLabel))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(Tier, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(Name, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(93, 93, 93)
+                        .addComponent(backButton)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(supermarketNameLabel)
+                    .addComponent(Name))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(supermarketTierLabel)
+                    .addComponent(Tier))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(viewPlanogramButton)
+                    .addComponent(uploadPlanogramButton))
+                .addGap(18, 18, 18)
+                .addComponent(backButton)
+                .addContainerGap(17, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void viewPlanogramButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewPlanogramButtonActionPerformed
+        // TODO add your handling code here:
+        new PlanogramSwitcher(ViewSupermarket.supermarketTier + "").setVisible(true);
+    }//GEN-LAST:event_viewPlanogramButtonActionPerformed
+
+    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        new EmployeeMenu().setVisible(true);
+    }//GEN-LAST:event_backButtonActionPerformed
+
+    private void uploadPlanogramButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uploadPlanogramButtonActionPerformed
+        // TODO add your handling code here:
+        jFileChooser1.showOpenDialog(null);
+    }//GEN-LAST:event_uploadPlanogramButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -85,5 +206,14 @@ public class ViewSupermarket extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Name;
+    private javax.swing.JLabel Tier;
+    private javax.swing.JButton backButton;
+    private javax.swing.JFileChooser jFileChooser1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel supermarketNameLabel;
+    private javax.swing.JLabel supermarketTierLabel;
+    private javax.swing.JButton uploadPlanogramButton;
+    private javax.swing.JButton viewPlanogramButton;
     // End of variables declaration//GEN-END:variables
 }

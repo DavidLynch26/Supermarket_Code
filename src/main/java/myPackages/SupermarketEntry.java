@@ -31,7 +31,10 @@ public class SupermarketEntry extends javax.swing.JFrame {
         loadElements();
     }
     
-    public void addToFile() throws IOException{
+    public void addToFile(String supermarketname, Integer tiernumber) throws IOException, ParseException{
+        
+        addElement(supermarketname, tiernumber);
+        
         FileWriter writer = new FileWriter(ZALCOMerchandisingSystem.supermarketFile);//making new filewritter to override file content
         writer.close();
         writer = new FileWriter(ZALCOMerchandisingSystem.supermarketFile, true);          
@@ -39,7 +42,7 @@ public class SupermarketEntry extends javax.swing.JFrame {
             String supermarketName = ZALCOMerchandisingSystem.supermarkets.getName(count);
             Integer tierNumber = ZALCOMerchandisingSystem.supermarkets.getTierNumber(count);
             
-            writer.write(supermarketName + tierNumber);
+            writer.write(supermarketName + ";" + tierNumber + "\n");
         }
         writer.close();
     }
@@ -53,9 +56,9 @@ public class SupermarketEntry extends javax.swing.JFrame {
         }        
     }
     
-    public void addElement(String supermarketName, Integer tierNumber) throws ParseException, IOException{
-        addRow(supermarketName, tierNumber);
-        addArrayList(supermarketName, tierNumber);
+    public void addElement(String supermarketname, Integer tiernumber) throws ParseException, IOException{
+        addRow(supermarketname, tiernumber);
+        addArrayList(supermarketname, tiernumber);
         
         SupermarketNameField.setText("");
         TierNumberNameField.setText("");
@@ -200,7 +203,7 @@ public class SupermarketEntry extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(jOptionPane1, "The tier number entered was invalid", "Invalid Tier Number", JOptionPane.WARNING_MESSAGE);
         }else{
             try {
-                addElement(SupermarketNameField.getText(), Integer.parseInt(TierNumberNameField.getText()));
+                addToFile(SupermarketNameField.getText(), Integer.parseInt(TierNumberNameField.getText()));
             } catch (ParseException | IOException ex) {
                 Logger.getLogger(SupermarketEntry.class.getName()).log(Level.SEVERE, null, ex);
             }

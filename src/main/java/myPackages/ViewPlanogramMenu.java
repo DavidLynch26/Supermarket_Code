@@ -96,17 +96,17 @@ public class ViewPlanogramMenu extends javax.swing.JFrame {
 
     private void smallPlanogramButtomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_smallPlanogramButtomActionPerformed
         // TODO add your handling code here:
-        new PlanogramSwitcher("small").setVisible(true);
+        new PlanogramSwitcher("1").setVisible(true);
     }//GEN-LAST:event_smallPlanogramButtomActionPerformed
 
     private void mediumPlanogramButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mediumPlanogramButtonActionPerformed
         // TODO add your handling code here:
-        new PlanogramSwitcher("medium").setVisible(true);
+        new PlanogramSwitcher("2").setVisible(true);
     }//GEN-LAST:event_mediumPlanogramButtonActionPerformed
 
     private void largePlanogramButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_largePlanogramButtonActionPerformed
         // TODO add your handling code here:
-        new PlanogramSwitcher("large").setVisible(true);
+        new PlanogramSwitcher("3").setVisible(true);
     }//GEN-LAST:event_largePlanogramButtonActionPerformed
 
     /**

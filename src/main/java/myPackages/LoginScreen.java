@@ -63,7 +63,7 @@ public class LoginScreen extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Login"));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(loginPriv + " " + "Login"));
 
         jLabel1.setText("Please enter user credentials");
 

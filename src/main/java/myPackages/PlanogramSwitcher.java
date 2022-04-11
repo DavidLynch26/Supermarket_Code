@@ -17,8 +17,17 @@ public class PlanogramSwitcher extends javax.swing.JFrame {
      * @param imageSize
      */
     public PlanogramSwitcher(String imageSize) {
-        PlanogramSwitcher.imageSize = imageSize;
-        
+        switch (imageSize) {
+            case "1":
+                PlanogramSwitcher.imageSize = "small";
+                break;
+            case "2":
+                PlanogramSwitcher.imageSize = "medium";
+                break;  
+            default:
+                PlanogramSwitcher.imageSize = "large";
+                break;
+        }
         initComponents();
     }
 
