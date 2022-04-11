@@ -4,6 +4,8 @@
  */
 package myPackages;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author David
@@ -21,6 +23,25 @@ public class LoginScreen extends javax.swing.JFrame {
         initComponents();
     }
 
+    public int checkCredentials(String username, String password){
+        if(loginPriv.equals("Manager")){
+            if(ZALCOMerchandisingSystem.userCred.managerUsername.contains(username)){
+                Integer userIndex = ZALCOMerchandisingSystem.userCred.managerUsername.indexOf(username);
+                if(ZALCOMerchandisingSystem.userCred.managerPassword.get(userIndex).equals(password)){
+                    return 1;
+                }
+            }
+        }else{
+            if(ZALCOMerchandisingSystem.userCred.employeeUsername.contains(username)){
+                Integer userIndex = ZALCOMerchandisingSystem.userCred.employeeUsername.indexOf(username);
+                if(ZALCOMerchandisingSystem.userCred.employeePassword.get(userIndex).equals(password)){
+                    return 1;
+                }
+            }
+        }
+        return 0;
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -30,6 +51,7 @@ public class LoginScreen extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jOptionPane1 = new javax.swing.JOptionPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         backButton = new javax.swing.JButton();
@@ -53,6 +75,11 @@ public class LoginScreen extends javax.swing.JFrame {
         });
 
         loginButton.setText("Login");
+        loginButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loginButtonActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Username:");
 
@@ -61,6 +88,12 @@ public class LoginScreen extends javax.swing.JFrame {
         usernameTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 usernameTextFieldActionPerformed(evt);
+            }
+        });
+
+        passwordTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                passwordTextFieldActionPerformed(evt);
             }
         });
 
@@ -133,11 +166,40 @@ public class LoginScreen extends javax.swing.JFrame {
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         // TODO add your handling code here:
+        this.dispose();
+        new StartScreen().setVisible(true);
     }//GEN-LAST:event_backButtonActionPerformed
 
     private void usernameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameTextFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_usernameTextFieldActionPerformed
+
+    private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
+        // TODO add your handling code here:
+        if(usernameTextField.getText().equals("") || passwordTextField.getText().equals("")){
+            JOptionPane.showMessageDialog(jOptionPane1, "Please fill all text fields", "Invalid input", JOptionPane.WARNING_MESSAGE);
+            for(int count =0; count <= ZALCOMerchandisingSystem.userCred.managerUsername.size()-1; count++){
+                System.out.println(ZALCOMerchandisingSystem.userCred.managerUsername.get(count) + ZALCOMerchandisingSystem.userCred.managerPassword.get(count));
+            }
+        }else{
+            if(checkCredentials(usernameTextField.getText(), passwordTextField.getText()) == 1){
+                JOptionPane.showMessageDialog(jOptionPane1, "Welcome to the ZALCO Merchandising System", "Welcome", JOptionPane.WARNING_MESSAGE);
+                this.dispose();
+                if(loginPriv.equals("Manager")){
+                    new ManagerMenu().setVisible(true);
+                }else{
+                    new EmployeeMenu().setVisible(true);
+                }
+            }else{
+                JOptionPane.showMessageDialog(jOptionPane1, "Please check the entered credentials", "Invalid", JOptionPane.WARNING_MESSAGE);
+            }
+        }
+        
+    }//GEN-LAST:event_loginButtonActionPerformed
+
+    private void passwordTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_passwordTextFieldActionPerformed
 
     /**
      * @param args the command line arguments
@@ -179,6 +241,7 @@ public class LoginScreen extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JOptionPane jOptionPane1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton loginButton;
     private javax.swing.JTextField passwordTextField;

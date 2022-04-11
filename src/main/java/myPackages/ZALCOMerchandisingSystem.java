@@ -15,11 +15,13 @@ import java.util.logging.Logger;
  */
 public class ZALCOMerchandisingSystem extends javax.swing.JFrame{
     
-    static Inventory inventory = new Inventory();
-    static Supermarket supermarket = new Supermarket();
     static File invFile = new File("Inventory File.txt");
+    static File supermarketFile = new File("Supermarkets.txt");
     static File managerCred = new File("Manager Credentials.txt");
     static File employeeCred = new File("Employee Credentials.txt");
+    static Inventory inventory = new Inventory();
+    static Usercredentials userCred = new Usercredentials();
+    static Supermarket supermarkets = new Supermarket();
     
     public static void main(String[] args){
         java.awt.EventQueue.invokeLater(new Runnable(){
@@ -27,6 +29,8 @@ public class ZALCOMerchandisingSystem extends javax.swing.JFrame{
             public void run(){
                 try {
                     inventory.loadInventory(invFile.getName());
+                    supermarkets.loadSupermarket(supermarketFile.getName());
+                    userCred.loadCredentials(employeeCred.getName(), managerCred.getName());
                 } catch (ParseException ex) {
                     Logger.getLogger(ZALCOMerchandisingSystem.class.getName()).log(Level.SEVERE, null, ex);
                 }

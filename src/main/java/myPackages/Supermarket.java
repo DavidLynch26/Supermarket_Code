@@ -15,21 +15,21 @@ import java.util.Scanner;
  */
 public class Supermarket {
     ArrayList<String> Name = new ArrayList<>();
-    ArrayList<Integer> Number = new ArrayList<>();
+    ArrayList<Integer> tierNumber = new ArrayList<>();
 
     Supermarket(){
     }
     
-    public void loadInventory(String inventoryFile) throws ParseException{                
+    public void loadSupermarket(String supermarketFile) throws ParseException{                
         try{
-            Scanner fScan = new Scanner(new File(inventoryFile));
+            Scanner fScan = new Scanner(new File(supermarketFile));
             while(fScan.hasNextLine()){
                 String [] nextLine = fScan.nextLine().split(";");
                 String name = nextLine[0];
                 Integer tierNumber = Integer.parseInt(nextLine[1]);
                 
                 this.Name.add(name);
-                this.Number.add(tierNumber);
+                this.tierNumber.add(tierNumber);
             }
             
         }catch(IOException e){}
@@ -40,14 +40,14 @@ public class Supermarket {
     }
     
     public void settierNumber(Integer tierNumber, int pos){
-        this.Number.set(pos, tierNumber);
+        this.tierNumber.set(pos, tierNumber);
     }
     
     public String getName(int pos){
         return this.Name.get(pos);
     }
     
-    public Integer gettierNumber(int pos){
-        return this.Number.get(pos);
+    public Integer getTierNumber(int pos){
+        return this.tierNumber.get(pos);
     }
 }

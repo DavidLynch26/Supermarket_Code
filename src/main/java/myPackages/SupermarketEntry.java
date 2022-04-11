@@ -4,6 +4,7 @@
  */
 package myPackages;
 
+import java.io.FileWriter;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.logging.Level;
@@ -30,10 +31,23 @@ public class SupermarketEntry extends javax.swing.JFrame {
         loadElements();
     }
     
+    public void addToFile() throws IOException{
+        FileWriter writer = new FileWriter(ZALCOMerchandisingSystem.supermarketFile);//making new filewritter to override file content
+        writer.close();
+        writer = new FileWriter(ZALCOMerchandisingSystem.supermarketFile, true);          
+        for(int count  = 0; count <= ZALCOMerchandisingSystem.supermarkets.Name.size()-1; count ++){
+            String supermarketName = ZALCOMerchandisingSystem.supermarkets.getName(count);
+            Integer tierNumber = ZALCOMerchandisingSystem.supermarkets.getTierNumber(count);
+            
+            writer.write(supermarketName + tierNumber);
+        }
+        writer.close();
+    }
+    
     public void loadElements() throws ParseException{
-        for(int count = 0;count <= ZALCOMerchandisingSystem.supermarket.Name.size()-1; count++){
-            String name = ZALCOMerchandisingSystem.supermarket.getName(count);
-            Integer number = ZALCOMerchandisingSystem.supermarket.gettierNumber(count);
+        for(int count = 0;count <= ZALCOMerchandisingSystem.supermarkets.Name.size()-1; count++){
+            String name = ZALCOMerchandisingSystem.supermarkets.getName(count);
+            Integer number = ZALCOMerchandisingSystem.supermarkets.getTierNumber(count);
             
             addRow(name, number);
         }        
@@ -48,8 +62,8 @@ public class SupermarketEntry extends javax.swing.JFrame {
     }
     
     public void addArrayList(String name, Integer number) throws ParseException, IOException{
-        ZALCOMerchandisingSystem.supermarket.Name.add(name);
-        ZALCOMerchandisingSystem.supermarket.Number.add(number);
+        ZALCOMerchandisingSystem.supermarkets.Name.add(name);
+        ZALCOMerchandisingSystem.supermarkets.tierNumber.add(number);
     }
     
     public void addRow(String supermarketName, Integer tierNumber) throws ParseException{
