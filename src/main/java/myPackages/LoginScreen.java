@@ -32,6 +32,12 @@ public class LoginScreen extends javax.swing.JFrame {
                 }
             }
         }else{
+            if(ZALCOMerchandisingSystem.userCred.managerUsername.contains(username)){
+                Integer userIndex = ZALCOMerchandisingSystem.userCred.managerUsername.indexOf(username);
+                if(ZALCOMerchandisingSystem.userCred.managerPassword.get(userIndex).equals(password)){
+                    return 1;
+                }
+            }          
             if(ZALCOMerchandisingSystem.userCred.employeeUsername.contains(username)){
                 Integer userIndex = ZALCOMerchandisingSystem.userCred.employeeUsername.indexOf(username);
                 if(ZALCOMerchandisingSystem.userCred.employeePassword.get(userIndex).equals(password)){
@@ -185,7 +191,7 @@ public class LoginScreen extends javax.swing.JFrame {
             }
         }else{
             if(checkCredentials(usernameTextField.getText(), passwordTextField.getText()) == 1){
-                JOptionPane.showMessageDialog(jOptionPane1, "Welcome to the ZALCO Merchandising System", "Welcome", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(jOptionPane1, "Welcome to the ZALCO Merchandising System");
                 this.dispose();
                 if(loginPriv.equals("Manager")){
                     new ManagerMenu().setVisible(true);

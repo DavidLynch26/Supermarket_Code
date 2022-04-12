@@ -4,6 +4,9 @@
  */
 package myPackages;
 
+import myPackages.Usercredentials;
+import myPackages.Inventory;
+import myPackages.Supermarket;
 import java.io.File;
 import java.text.ParseException;
 import java.util.logging.Level;

@@ -17,7 +17,7 @@ public class Supermarket {
     ArrayList<String> Name = new ArrayList<>();
     ArrayList<Integer> tierNumber = new ArrayList<>();
 
-    Supermarket(){
+    public Supermarket(){
     }
     
     public void loadSupermarket(String supermarketFile) throws ParseException{                

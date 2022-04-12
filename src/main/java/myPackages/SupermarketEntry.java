@@ -152,7 +152,7 @@ public class SupermarketEntry extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(TierNumberNameField, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)
                             .addComponent(SupermarketNameField))))
-                .addContainerGap(8, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -180,8 +180,8 @@ public class SupermarketEntry extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -203,7 +203,11 @@ public class SupermarketEntry extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(jOptionPane1, "The tier number entered was invalid", "Invalid Tier Number", JOptionPane.WARNING_MESSAGE);
         }else{
             try {
-                addToFile(SupermarketNameField.getText(), Integer.parseInt(TierNumberNameField.getText()));
+                if(ZALCOMerchandisingSystem.supermarkets.Name.contains(SupermarketNameField.getText())){
+                    JOptionPane.showMessageDialog(jOptionPane1, "This supermarket has already been added", "Duplicate Supermarket", JOptionPane.WARNING_MESSAGE);
+                }else{
+                    addToFile(SupermarketNameField.getText(), Integer.parseInt(TierNumberNameField.getText()));
+                }       
             } catch (ParseException | IOException ex) {
                 Logger.getLogger(SupermarketEntry.class.getName()).log(Level.SEVERE, null, ex);
             }

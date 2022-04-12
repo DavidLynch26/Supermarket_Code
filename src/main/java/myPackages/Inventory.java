@@ -19,7 +19,7 @@ public class Inventory {
     ArrayList<String> Name = new ArrayList<>();
     ArrayList<Date> expiryDate = new ArrayList<>();
     
-    Inventory() {
+    public Inventory() {
     }
     
     public void loadInventory(String inventoryFile) throws ParseException{                
